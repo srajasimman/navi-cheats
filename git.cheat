@@ -1,0 +1,4 @@
+% git, srht, sourcehut
+
+# push to new srht repo
+git remote add srht git@git.sr.ht:~h4n1/$(basename $(git rev-parse --show-toplevel))
