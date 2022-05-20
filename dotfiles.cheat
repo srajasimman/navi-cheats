@@ -1,0 +1,11 @@
+% dotfiles, checkout
+@ config, dotfiles
+
+$ branch: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --all
+$ path: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree <branch> --name-only
+
+# checkout file from other branch
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
+
+# patch file from other branch
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
