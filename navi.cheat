@@ -5,8 +5,7 @@ $(cd <dirs> && git pull)
 
 $ dirs : ls -d "$(navi info cheats-path)"/*
 
-
-# update personal cheatsheets
+# pull personal cheatsheets
 cd "$(navi info cheats-path)/personal" && git pull
 
 # push personal cheatsheets
