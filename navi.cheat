@@ -10,3 +10,9 @@ cd "$(navi info cheats-path)/personal" && git pull
 
 # push personal cheatsheets
 cd "$(navi info cheats-path)/personal" && git add -A && git commit -a -m "<message>" && git push
+
+# edit cheatsheet
+$EDITOR "<sheet>"
+
+$ sheet: ls $(navi info cheats-path)/personal/*.cheat
+; TODO: make fzf show only the basename and display a preview
