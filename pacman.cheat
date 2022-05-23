@@ -1,0 +1,44 @@
+; see: https://wiki.archlinux.org/title/Pacman/Rosetta
+
+% pacman, arch, packages
+
+# upgrade all packages
+pacman -Syu
+
+# info about installed package
+pacman -Qi <installed_package>
+
+# info about explicitly installed package
+pacman -Qi <installed_package_explicit>
+
+# remove package incl. deps + config files
+pacman -Rns <installed_package_explicit>
+
+# which package provides a file
+pacman -Qo <file>
+
+# which files are provided by a local package
+pacman -Ql <installed_package>
+
+# which package requires this as a dependency
+pacman -Qi <installed_package_dependency> | grep 'Required By'
+
+# search for package
+pacman -Ss <package>
+
+# remove an orphaned package
+pacman -Rns <installed_package_orphan>
+
+# remove all orphaned packages
+pacman -Qdtq | pacman -Rns -
+
+# mark package as explicitly installed
+pacman -D --asexplicit <installed_package_dependency>
+
+
+
+$ installed_package: pacman -Q | awk '{print $1}'
+$ installed_package_explicit: pacman -Qe | awk '{print $1}'
+$ installed_package_dependency: pacman -Qd | awk '{print $1}'
+$ installed_package_orphan: pacman -Qdtq
+$ file: ls .
