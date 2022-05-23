@@ -1,0 +1,26 @@
+% tar, create
+
+# create tarball
+tar -cvf <path_to_create>.tar <path_to_create>
+
+# create compressed tarball
+tar -czvf <path_to_create>.tar.gz <path_to_create>
+
+$ path_to_create: ls .
+
+% tar, extract
+
+# extract tarball
+tar -xvf <tarball>
+
+# list contents of tarball
+tar -tvf <tarball>
+
+# extract compressed tarball
+tar -xzvf <tarball_compressed>
+
+# list contents of compressed tarball
+tar -tzvf <tarball_compressed>
+
+$ tarball_compressed: ls -1 *.{tar.gz,tgz}
+$ tarball: ls -1 *.tar
