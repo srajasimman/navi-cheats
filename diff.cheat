@@ -1,0 +1,10 @@
+% diff, bash, files
+
+# diff output of two commands
+diff --color=always <(<command1>) <(<command2>)
+
+# diff two files in this dir
+diff --color=always <file1> <file2>
+
+$ file1: ls .
+$ file2: ls .
