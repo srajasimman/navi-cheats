@@ -2,3 +2,6 @@
 
 # add new srht remote repo
 git remote add srht git@git.sr.ht:~h4n1/$(basename $(git rev-parse --show-toplevel))
+
+# add new srht remote repo (custom name)
+git remote add srht git@git.sr.ht:~h4n1/<name>
