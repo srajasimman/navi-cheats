@@ -1,0 +1,33 @@
+% torrent, transmission
+
+# list all torrents
+transmission-remote -l
+
+# start torrent
+transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -S
+
+# start all torrents
+transmission-remote -t all -s
+
+# stop torrent
+transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -S
+
+# stop all torrents
+transmission-remote -t all -S
+
+# get torrent info
+transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -i
+
+# list files in torrent 
+transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -f
+
+
+$ all_torrents: transmission-remote -t all -l | head -n -1 --- --header-lines 1
+
+; TODO: filter active/stopped/idle torrents
+$ stopped_torrent: transmission-remote -t all -l
+$ active_torrent: transmission-remote -t active -l | head -n -1 --- --header-lines 1
+
+; TODO: list files in torrent then mark 'get' or 'no get'
+; TODO: multiselect torrents
+
