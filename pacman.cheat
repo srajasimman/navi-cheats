@@ -3,7 +3,7 @@
 % pacman, arch, packages
 
 # upgrade all packages
-pacman -Syu
+sudo pacman -Syu
 
 # info about installed package
 pacman -Qi <installed_package>
@@ -12,7 +12,7 @@ pacman -Qi <installed_package>
 pacman -Qi <installed_package_explicit>
 
 # remove package incl. deps + config files
-pacman -Rns <installed_package_explicit>
+sudo pacman -Rns <installed_package_explicit>
 
 # which package provides a file
 pacman -Qo <file>
@@ -27,13 +27,13 @@ pacman -Qi <installed_package_dependency> | grep 'Required By'
 pacman -Ss <package>
 
 # remove an orphaned package
-pacman -Rns <installed_package_orphan>
+sudo pacman -Rns <installed_package_orphan>
 
 # remove all orphaned packages
-pacman -Qdtq | pacman -Rns -
+sudo pacman -Qdtq | pacman -Rns -
 
 # mark package as explicitly installed
-pacman -D --asexplicit <installed_package_dependency>
+sudo pacman -D --asexplicit <installed_package_dependency>
 
 
 
