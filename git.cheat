@@ -5,3 +5,10 @@ git remote add srht git@git.sr.ht:~h4n1/$(basename $(git rev-parse --show-toplev
 
 # add new srht remote repo (custom name)
 git remote add srht git@git.sr.ht:~h4n1/<name>
+
+% git, history, rebase, squash
+
+# git interactive rebase
+git rebase -i $(echo "<target_commit>" | awk '{print $1}')
+
+$ target_commit: git log --oneline
