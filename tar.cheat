@@ -14,13 +14,13 @@ $ path_to_create: ls .
 tar -xvf <tarball>
 
 # list contents of tarball
-tar -tvf <tarball>
+tar -tf <tarball>
 
 # extract compressed tarball
 tar -xzvf <tarball_compressed>
 
 # list contents of compressed tarball
-tar -tzvf <tarball_compressed>
+tar -tzf <tarball_compressed>
 
 $ tarball_compressed: ls -1 *.{tar.gz,tgz}
 $ tarball: ls -1 *.tar
