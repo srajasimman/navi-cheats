@@ -1,7 +1,10 @@
-% mimetype, xdg, open
+% mimetype, xdg, open, filetype
 
 # check application associated with file
-
 xdg-mime query default $(xdg-mime query filetype <file>)
 
-$ file: ls
+# set application as default for mimetype of file
+echo "add to mimeapps.list: $(xdg-mime query filetype <file>)=<application>"
+
+$ file: find . -maxdepth 1 -type f
+$ application: ls /usr/share/applications/
