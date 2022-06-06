@@ -1,0 +1,7 @@
+% mimetype, xdg, open
+
+# check application associated with file
+
+xdg-mime query default $(xdg-mime query filetype <file>)
+
+$ file: ls
