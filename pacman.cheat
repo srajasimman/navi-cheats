@@ -35,12 +35,19 @@ sudo pacman -Qdtq | pacman -Rns -
 # mark package as explicitly installed
 sudo pacman -D --asexplicit <installed_package_dependency>
 
+# mark package as dependency
+sudo pacman -D --asdeps <installed_package_explicit>
+
 # downgrade package
 sudo pacman -U <cached_package>
+
+# list packages by install date
+echo "<installed_packages_bydate>"
 
 $ installed_package: pacman -Q | awk '{print $1}'
 $ installed_package_explicit: pacman -Qe | awk '{print $1}'
 $ installed_package_dependency: pacman -Qd | awk '{print $1}'
 $ installed_package_orphan: pacman -Qdtq
+$ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 $ file: ls .
 $ cached_package: ls /var/cache/pacman/pkg/*.tar.zst
