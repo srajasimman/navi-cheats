@@ -1,0 +1,4 @@
+# get n random characters
+
+cat /dev/random | tr -dc A-Za-z0-9 | head -c <n> ; echo ''
+
