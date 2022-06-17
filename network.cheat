@@ -1,0 +1,7 @@
+% network, netcat, ports
+
+# scan open ports on remote device
+nc -z -v <remote_address> 1-65535 2>&1 | grep -v 'Connection refused'
+
+# list open ports on local device
+sudo lsof -i -P -n | grep LISTEN
