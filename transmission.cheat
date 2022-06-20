@@ -3,6 +3,9 @@
 # list all torrents
 transmission-remote -l
 
+# watch list of all torrents
+watch -t 'transmission-remote -l'
+
 # start torrent
 transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -S
 
@@ -17,6 +20,9 @@ transmission-remote -t all -S
 
 # get torrent info
 transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -i
+
+# watch torrent info
+watch -t transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -i
 
 # list files in torrent 
 transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -f
