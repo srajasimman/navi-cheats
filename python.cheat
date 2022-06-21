@@ -1,0 +1,16 @@
+% python, venv, pip
+
+# create virtual environment (under ./venv/)
+python -m venv ./venv
+
+# enter virtual environment
+source venv/bin/activate
+
+# exit virtual environment
+deactivate
+
+# save virtual environment package list
+pip freeze > requirements.txt
+
+# install from package list
+pip install -r requirements.txt
