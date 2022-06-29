@@ -1,0 +1,2 @@
+# get os install date
+stat / | grep Birth
