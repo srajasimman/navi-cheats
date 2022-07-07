@@ -1,0 +1,11 @@
+% gpg, encryption, password
+
+# encrypt file with password
+gpg --symmetric --cipher-algo AES-256 --no-symkey-cache <clearfile>
+
+$ clearfile: ls -1 *
+
+# decrypt file
+gpg --decrypt <encryptedfile> > $(basename <encryptedfile> .gpg)
+
+$ encryptedfile: ls -1 *.gpg
