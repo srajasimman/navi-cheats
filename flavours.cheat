@@ -1,0 +1,6 @@
+% base16, flavours, theme, scheme, colour
+
+# show colours in base16 scheme
+flavours info <scheme>
+
+$ scheme: flavours list | tr ' ' '\n' | fzf
