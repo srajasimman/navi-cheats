@@ -11,4 +11,16 @@ git remote add srht git@git.sr.ht:~h4n1/<name>
 # git interactive rebase
 git rebase -i $(echo "<target_commit>" | awk '{print $1}')
 
+# list sourcehut git repos
+hut git list
+
+# show details of sourcehut git repo
+hut git show $(echo "<srht_repo_w_priv>" | awk '{print $1}')
+
+# clone sourcehut repo into local projects directory
+cd "$(xdg-user-dir DOCUMENTS)projectsl" && git clone git@git.sr.ht:<srht_user>/<srht_repo>
+
 $ target_commit: git log --oneline
+$ srht_repo_w_priv: hut git list | grep '^[^ ]'
+$ srht_repo: hut git list | grep '^[^ ]' | awk '{print $1}'
+$ srht_user: hut meta show | awk 'NR==1{print $1}'
