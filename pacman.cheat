@@ -5,6 +5,12 @@
 # upgrade all packages
 sudo pacman -Syu
 
+# upgrade all packages (force refresh repo databases)
+sudo pacman -Syyu
+
+# check for package updates
+checkupdates
+
 # info about installed package
 pacman -Qi <installed_package>
 
