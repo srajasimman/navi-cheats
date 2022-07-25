@@ -1,11 +1,19 @@
-% dotfiles, checkout
+% dotfiles
 @ config, dotfiles
 
 $ branch: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --all
 $ path: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree <branch> --name-only
+$ file: find . -maxdepth 1 -type f -printf '%P\n'
+$ tracked_file: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-files
 
-# checkout file from other branch
-git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
+; # checkout file from other branch
+; git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
 
-# patch file from other branch
-git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
+; # patch file from other branch
+; git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout <branch> <path>
+
+# check if file is tracked
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-files --error-unmatch <file>
+
+# view history of file
+git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log -p -- <tracked_file>
