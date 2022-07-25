@@ -11,8 +11,13 @@ cd "$(navi info cheats-path)/personal" && git pull
 # push personal cheatsheets
 cd "$(navi info cheats-path)/personal" && git add -A && git commit -a -m "<message>" && git push
 
-# edit cheatsheet
-$EDITOR "<sheet>"
+# cd to personal cheatsheets dir
+cd "$(navi info cheats-path)/personal"
 
-$ sheet: ls $(navi info cheats-path)/personal/*.cheat
-; TODO: make fzf show only the basename and display a preview
+# edit cheatsheet
+$EDITOR "$(navi info cheats-path)/personal/<sheet>"
+
+;                           ugly solution to displaying only basename
+$ sheet: ls $(navi info cheats-path)/personal/*.cheat | sed 's#.*/##'
+
+; TODO: ~~make fzf show only the basename~~ and display a preview
