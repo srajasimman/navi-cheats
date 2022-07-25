@@ -42,12 +42,12 @@ sudo pacman -D --asdeps <installed_package_explicit>
 sudo pacman -U <cached_package>
 
 # list packages by install date
-echo "<installed_packages_bydate>"
+expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 
 $ installed_package: pacman -Q | awk '{print $1}'
 $ installed_package_explicit: pacman -Qe | awk '{print $1}'
 $ installed_package_dependency: pacman -Qd | awk '{print $1}'
 $ installed_package_orphan: pacman -Qdtq
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
-$ file: ls .
+$ file: ls -a .
 $ cached_package: ls /var/cache/pacman/pkg/*.tar.zst
