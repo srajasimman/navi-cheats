@@ -17,6 +17,9 @@ sudo pacman -Rns <installed_package_explicit>
 # which package provides a file
 pacman -Qo <file>
 
+# which package provides a command
+pacman -Qo <installed_command>
+
 # which files are provided by a local package
 pacman -Ql <installed_package>
 
@@ -25,6 +28,9 @@ pacman -Qi <installed_package_dependency> | grep 'Required By'
 
 # search for package
 pacman -Ss <package>
+
+# list orphaned packages (no longer required as deps)
+pacman -Qdt
 
 # remove an orphaned package
 sudo pacman -Rns <installed_package_orphan>
@@ -41,6 +47,9 @@ sudo pacman -D --asdeps <installed_package_explicit>
 # downgrade package
 sudo pacman -U <cached_package>
 
+# which package could provide a command/file
+sudo pacman -Fy <command>
+
 # list packages by install date
 expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 
@@ -51,3 +60,4 @@ $ installed_package_orphan: pacman -Qdtq
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 $ file: ls -a .
 $ cached_package: ls /var/cache/pacman/pkg/*.tar.zst
+$ installed_command: compgen -c
