@@ -6,5 +6,5 @@ diff --color=always <(<command1>) <(<command2>)
 # diff two files in this dir
 diff --color=always <file1> <file2>
 
-$ file1: ls .
-$ file2: ls .
+$ file1: find . -maxdepth 1 -type f -printf '%P\n'
+$ file2: find . -maxdepth 1 -type f -printf '%P\n'
