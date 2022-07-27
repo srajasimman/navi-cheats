@@ -1,0 +1,4 @@
+% font, fontconfig, fc-list
+
+# search fonts installed on system
+fc-list | awk -F ':' 'BEGIN {OFS=" : "}; {print $2, $3}' | fzf
