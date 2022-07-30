@@ -3,5 +3,14 @@
 # write .iso to usb
 sudo dd bs=4M if=$(realpath <iso>) of=/dev/$(echo "<dev> | awk '{print $1}'") conv=fsync oflag=direct status=progress
 
+# save disk image to file (WIP)
+; https://forums.raspberrypi.com/viewtopic.php?t=46911
+; TODO: check that this version works
+sudo dd bs=4M if=/dev/$(echo "<dev> | awk '{print $1}'") status=progress | gzip > ./<backup_file_name>.gz
+
+# restore disk image backup (WIP)
+gzip -dc <backedup_file> | sudo dd bs=4M of=/dev/$(echo "<dev> | awk '{print $1}'") status=progress
+
 $ iso: ls -1 *{.iso,.img}
 $ dev: lsblk -l -n -o NAME,LABEL,MOUNTPOINTS,SIZE,FSUSE%
+$ backedup_file: ls -1 *{.gz}
