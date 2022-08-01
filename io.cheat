@@ -1,0 +1,4 @@
+% filesystem, mount, lsof
+
+# search open files
+lsof | fzf --header-lines=1
