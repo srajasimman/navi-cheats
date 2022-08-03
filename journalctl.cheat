@@ -1,0 +1,12 @@
+% journal, log, systemd
+
+# list journal messages since last boot
+journalctl -b
+
+; # list journal messages within time period
+; journalctl --since= --until=
+
+# list journal messages since last boot, filtered by priority
+journalctl -b --priority=$(awk -F ':' '{print $1}' <<< "<priority>")
+
+$ priority: echo -ne "0: emerg\n1: alert\n2: crit\n3: err\n4: warning\n5: notice\n6: info\n7: debug"
