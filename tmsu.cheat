@@ -1,0 +1,7 @@
+% tmsu, tag
+
+# tag file or folder
+tmsu tag "<file_or_folder>" "<tags>"
+
+$ tags: tmsu tags
+$ file_or_folder: ls .
