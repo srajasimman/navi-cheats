@@ -1,7 +1,41 @@
 % tmsu, tag
 
-# tag file or folder
-tmsu tag "<file_or_folder>" "<tags>"
+# tag file or dir
+tmsu tag "<file_or_dir>" "<tags>"
+
+# tag an untagged file or dir in the current dir
+tmsu tag "<untagged_in_cwd>" "<tags>"
+
+# tag a dir and its contents recursively
+tmsu tag -r "<dir>" "<tags>"
+
+; # see values associated with a tag
+; tmsu values "<tags_with_values>"
+
+# which tags does a value apply to
+tmsu tags -u "<value>"
+
+# list files or dirs with a tag
+tmsu files "<tags>"
+
+# list only files with a tag
+tmsu files -f "<tags>"
+
+; # untag a file
+; tmsu untag "<tagged_file_or_dir>" "<file_tag>"
+
+
+
+$ file_or_dir: ls .
+$ file: find . -type f
+$ dir: find . -type d
+$ file_in_cwd: find . -maxdepth 1 -type f
+$ dir_in_cwd: find . -maxdepth 1 -type d
 
 $ tags: tmsu tags
-$ file_or_folder: ls .
+$ tags_with_values: tmsu tags --value
+$ value: tmsu values
+$ tagged_file_or_dir: tmsu files
+$ file_tag: tmsu tags "<tagged_file_or_dir>"
+$ untagged_in_cwd: tmsu untagged -d
+$ untagged_all: tmsu untagged
