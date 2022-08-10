@@ -1,0 +1,44 @@
+% kernel, linux, module
+
+# see loaded modules
+lsmod | fzf --header-lines=1
+
+# remove a module from the kernel
+sudo modprobe -r <loaded_module>
+
+# reload a kernel module
+for mod in "<loaded_module>"; do sudo modprobe -r $mod; sudo modprobe $mod; done
+
+# load an unloaded kernel module
+sudo modprobe <unloaded_module>
+
+# list installed kernels
+; is there a better distro-independent way to do this?
+; /lib symlinks to /usr/lib
+ls -l /lib/modules/
+
+# go to modules directory for current kernel
+cd /usr/lib/modules/$(uname -r)
+
+# list all available modules for current kernel
+find /lib/modules/$(uname -r) -type f -name '*.ko*'
+
+# view kernel messages (in human-readable form)
+sudo dmesg -H
+
+# follow kernel messages
+sudo dmesg -Hw
+
+# view kernel error messages
+sudo dmesg -H --level err
+
+
+
+$ loaded_module: lsmod --- --column 1 --header-lines 1
+
+$ available_module: basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*')
+
+$ unloaded_module: comm -13 <(cat /proc/modules | cut -d ' ' -f 1 | sort) <(basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | tr -- - _ | sort)
+; `cat /proc/modules` = lists loaded modules with other info, removed by `cut`
+; `basename` over `find` shows available modules, `tr` changes - in module names to _, to match /proc/modules or lsmod.
+; comm -13 shows lines unique to the second input
