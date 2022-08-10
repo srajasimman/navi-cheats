@@ -1,2 +1,2 @@
-# get os install date
+# get os install date (not 100% reliable)
 stat / | grep Birth
