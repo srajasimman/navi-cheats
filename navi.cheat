@@ -11,7 +11,7 @@ cd "$(navi info cheats-path)/personal" && git pull
 # push personal cheatsheets
 cd "$(navi info cheats-path)/personal" && git add -A && git commit -a -m "<message>" && git push
 
-# cd to personal cheatsheets dir
+# go to personal cheatsheets dir
 cd "$(navi info cheats-path)/personal"
 
 # edit cheatsheet
