@@ -1,7 +1,17 @@
 % kernel, linux, module
 
-# see loaded modules
-lsmod | fzf --header-lines=1
+# see loaded kernel modules
+lsmod | fzf --header-lines=1 --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' --preview-window=bottom,wrap,20%
+
+# see unloaded kernel modules
+; explanation below
+comm -13 <(cat /proc/modules | cut -d ' ' -f 1 | sort) <(basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | tr -- - _ | sort) | fzf --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' --preview-window=bottom,wrap,20%
+
+# description of a loaded module
+modinfo --field description <loaded_module>
+
+# description of an unloaded module
+modinfo --field description <unloaded_module>
 
 # remove a module from the kernel
 sudo modprobe -r <loaded_module>
