@@ -1,6 +1,6 @@
-; see: https://wiki.archlinux.org/title/Pacman/Rosetta
-
 % pacman, arch, packages
+@ environment, env var, path
+; see: https://wiki.archlinux.org/title/Pacman/Rosetta
 
 # upgrade all packages
 sudo pacman -Syu
@@ -25,6 +25,12 @@ pacman -Qo <file>
 
 # which package provides a command
 pacman -Qo <installed_command>
+
+# which package provides a file in $PATH (by dir)
+pacman -Qo <file_in_path>
+
+# which package provides an executable in $PATH
+pacman -Qo <all_in_path>
 
 # which files are provided by a local package
 pacman -Ql <installed_package>
