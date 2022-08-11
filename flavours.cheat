@@ -3,4 +3,13 @@
 # show colours in base16 scheme
 flavours info <scheme>
 
-$ scheme: flavours list | tr ' ' '\n' | fzf
+# apply base16 scheme
+flavours apply <scheme>
+
+# reapply current base16 scheme
+flavours apply $(flavours current)
+
+# show colours in current base16 scheme
+flavours info $(flavours current)
+
+$ scheme: flavours list | tr ' ' '\n' --- --preview 'flavours info {}'
