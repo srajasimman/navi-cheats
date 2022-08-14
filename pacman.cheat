@@ -48,7 +48,7 @@ pacman -Qdt
 sudo pacman -Rns <installed_package_orphan>
 
 # remove all orphaned packages
-sudo pacman -Qdtq | pacman -Rns -
+pacman -Qdtq | sudo pacman -Rns -
 
 # mark package as explicitly installed
 sudo pacman -D --asexplicit <installed_package_dependency>
