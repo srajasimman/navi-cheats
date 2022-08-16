@@ -11,11 +11,17 @@ sudo pacman -Syyu
 # check for package updates
 checkupdates
 
+# install a package
+sudo pacman -S <not_installed_package>
+
 # info about installed package
 pacman -Qi <installed_package>
 
 # info about explicitly installed package
 pacman -Qi <installed_package_explicit>
+
+# info about available but not installed package
+pacman -Si <not_installed_package>
 
 # remove package incl. deps + config files
 sudo pacman -Rns <installed_package_explicit>
@@ -59,7 +65,7 @@ sudo pacman -D --asdeps <installed_package_explicit>
 # downgrade package
 sudo pacman -U <cached_package>
 
-# which package could provide a command/file
+# which package could provide a file/command
 sudo pacman -Fy <command>
 
 # list foreign (not in main repos) packages
@@ -68,17 +74,17 @@ pacman -Qm
 # list packages by install date
 expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 
+# limited dependency tree for package
+pactree --depth <number> <available_package>
+
 # dependency tree for installed package
-pactree --depth <number> <installed_package>
+pactree -c <installed_package>
 
-# full dependency tree for installed package
-pactree -cs <installed_package>
-
-# full reverse dependency tree (what needs this) for installed package
+# reverse dependency tree (what needs this) for installed package
 pactree -cr <installed_package>
 
-# full dependency tree for package
-pactree -cs <installed_package>
+# dependency tree for non-installed package
+pactree -cs <not_installed_package>
 
 $ installed_package: pacman -Q | awk '{print $1}' --- --preview "pacman -Qi {}"
 $ installed_package_explicit: pacman -Qe | awk '{print $1}' --- --preview "pacman -Qi {}"
@@ -86,6 +92,13 @@ $ installed_package_dependency: pacman -Qd | awk '{print $1}' --- --preview "pac
 $ installed_package_foreign: pacman -Qm | awk '{print $1}' --- --preview "pacman -Qi {}"
 $ installed_package_orphan: pacman -Qdtq --- --preview "pacman -Qi {}"
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
+$ available_package: pacman -Slq --- --preview "pacman -Si {}"
+$ not_installed_package: comm -13 \
+  <(pacman -Q | awk '{print $1}' | sort) \
+  <(pacman -Slq | sort) \
+  --- --preview "pacman -Si {}"
 $ file: ls -a .
-$ cached_package: ls /var/cache/pacman/pkg/*.tar.zst
+$ cached_package: find /var/cache/pacman/pkg
+; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
+; ↑ cleaner output but not what the downgrade command needs
 $ installed_command: compgen -c
