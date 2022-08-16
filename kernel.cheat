@@ -1,11 +1,19 @@
 % kernel, linux, module
 
 # see loaded kernel modules
-lsmod | fzf --header-lines=1 --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' --preview-window=bottom,wrap,20%
+lsmod | \
+fzf --header-lines=1 \
+--preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' \
+--preview-window=bottom,wrap,20%
 
 # see unloaded kernel modules
 ; explanation below
-comm -13 <(cat /proc/modules | cut -d ' ' -f 1 | sort) <(basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | tr -- - _ | sort) | fzf --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' --preview-window=bottom,wrap,20%
+comm -13 \
+<(cat /proc/modules | cut -d ' ' -f 1 | sort) \
+<(basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | tr -- - _ | sort) \
+| fzf \
+--preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' \
+--preview-window=bottom,wrap,20%
 
 # description of a loaded module
 modinfo --field description <loaded_module>
@@ -44,11 +52,18 @@ sudo dmesg -H --level err
 
 
 
-$ loaded_module: lsmod --- --column 1 --header-lines 1
+$ loaded_module: lsmod \
+  --- --column 1 --header-lines 1
 
 $ available_module: basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*')
 
-$ unloaded_module: comm -13 <(cat /proc/modules | cut -d ' ' -f 1 | sort) <(basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | tr -- - _ | sort)
+$ unloaded_module: comm -13 \
+  <(cat /proc/modules | cut -d ' ' -f 1 | sort) \
+  <(basename -a -s .ko.zst \
+    $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | \
+  tr -- - _ | sort) \
+  --- --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})'
+
 ; `cat /proc/modules` = lists loaded modules with other info, removed by `cut`
 ; `basename` over `find` shows available modules, `tr` changes - in module names to _, to match /proc/modules or lsmod.
 ; comm -13 shows lines unique to the second input
