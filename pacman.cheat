@@ -62,12 +62,28 @@ sudo pacman -U <cached_package>
 # which package could provide a command/file
 sudo pacman -Fy <command>
 
+# list foreign (not in main repos) packages
+pacman -Qm
+
 # list packages by install date
 expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
+
+# dependency tree for installed package
+pactree --depth <number> <installed_package>
+
+# full dependency tree for installed package
+pactree -cs <installed_package>
+
+# full reverse dependency tree (what needs this) for installed package
+pactree -cr <installed_package>
+
+# full dependency tree for package
+pactree -cs <installed_package>
 
 $ installed_package: pacman -Q | awk '{print $1}'
 $ installed_package_explicit: pacman -Qe | awk '{print $1}'
 $ installed_package_dependency: pacman -Qd | awk '{print $1}'
+$ installed_package_foreign: pacman -Qm | awk '{print $1}'
 $ installed_package_orphan: pacman -Qdtq
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 $ file: ls -a .
