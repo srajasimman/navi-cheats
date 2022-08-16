@@ -1,10 +1,5 @@
 % navi, cheatsheets, meta
 
-# update cheatsheets (not working, they're not git dirs for some reason)
-$(cd <dirs> && git pull)
-
-$ dirs : ls -d "$(navi info cheats-path)"/*
-
 # pull personal cheatsheets
 cd "$(navi info cheats-path)/personal" && git pull
 
@@ -15,9 +10,10 @@ cd "$(navi info cheats-path)/personal" && git add -A && git commit -a -m "<messa
 cd "$(navi info cheats-path)/personal"
 
 # edit cheatsheet
-$EDITOR "$(navi info cheats-path)/personal/<sheet>"
+$EDITOR "$(navi info cheats-path)/personal/<sheet>.cheat"
 
-;                           ugly solution to displaying only basename
-$ sheet: ls $(navi info cheats-path)/personal/*.cheat | sed 's#.*/##'
-
-; TODO: ~~make fzf show only the basename~~ and display a preview
+$ sheet: find "$(navi info cheats-path)/personal" -maxdepth 1 -type f | \
+  xargs basename -s ".cheat" \
+  --- --preview "cat $(navi info cheats-path)/personal/{}.cheat | \
+  grep --color=always -e '^' -e '^#.*'"
+; grep to highlight
