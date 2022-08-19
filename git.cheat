@@ -17,8 +17,8 @@ hut git list
 # show details of sourcehut git repo
 hut git show $(echo "<srht_repo_w_priv>" | awk '{print $1}')
 
-# clone sourcehut repo into local projects directory
-cd "$(xdg-user-dir DOCUMENTS)projectsl" && git clone git@git.sr.ht:<srht_user>/<srht_repo>
+# clone sourcehut repo
+git clone git@git.sr.ht:<srht_user>/<srht_repo>
 
 $ target_commit: git log --oneline
 $ srht_repo_w_priv: hut git list | grep '^[^ ]'
