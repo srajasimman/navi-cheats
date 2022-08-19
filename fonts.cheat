@@ -2,3 +2,6 @@
 
 # search fonts installed on system
 fc-list | awk -F ':' 'BEGIN {OFS=" : "}; {print $2, $3}' | fzf
+
+# which installed font is rendered for a specified font
+fc-match '<specified_font>'
