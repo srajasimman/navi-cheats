@@ -72,7 +72,7 @@ sudo pacman -Fy <command>
 pacman -Qm
 
 # which dependencies are already installed
-pac -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | xargs pacman -Q
+pac -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
 
 # list packages by install date
 expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
