@@ -71,8 +71,14 @@ sudo pacman -Fy <command>
 # list foreign (not in main repos) packages
 pacman -Qm
 
-# which dependencies are already installed
-pac -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
+# which dependencies are/are not already installed
+pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
+
+# list missing dependencies for package
+pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T -
+
+# browse missing dependencies for package
+pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T - | tr -s ' ' "\n" | fzf --preview='pacman -Si {}'
 
 # list packages by install date
 expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
