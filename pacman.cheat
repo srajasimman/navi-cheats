@@ -75,7 +75,7 @@ pacman -Qm
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
 
 # list missing dependencies for package
-pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T -
+pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -T -
 
 # browse missing dependencies for package
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T - | tr -s ' ' "\n" | fzf --preview='pacman -Si {}'
