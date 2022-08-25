@@ -3,8 +3,11 @@
 # create tarball
 tar -cvf <path_to_create>.tar <path_to_create>
 
-# create compressed tarball
-tar -czvf <path_to_create>.tar.gz <path_to_create>
+# create compressed (gzip) tarball
+tar -czf <path_to_create>.tar.gz <path_to_create>
+
+# create compressed (xz) tarball
+tar -cJf <path_to_create>.tar.xz <path_to_create>
 
 $ path_to_create: find . ! -name . -prune -type d -printf '%P\n'
 ; list all directories, hidden and non-hidden (https://unix.stackexchange.com/a/1647)
