@@ -71,6 +71,12 @@ sudo pacman -Fy <command>
 # list foreign (not in main repos) packages
 pacman -Qm
 
+# browse package groups
+<package_group>
+
+# browse packages in a group
+pacman -Sgq <package_group> | fzf --preview='pacman -Si {}'
+
 # which dependencies are/are not already installed
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
 
@@ -111,3 +117,4 @@ $ cached_package: find /var/cache/pacman/pkg
 ; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
 ; ↑ cleaner output but not what the downgrade command needs
 $ installed_command: compgen -c
+$ package_group: pacman -Sg --- --preview "pacman -Sgq {}"
