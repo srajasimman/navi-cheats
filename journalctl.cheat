@@ -7,6 +7,6 @@ journalctl -b
 ; journalctl --since= --until=
 
 # list journal messages since last boot, filtered by priority
-journalctl -b --priority=$(awk -F ':' '{print $1}' <<< "<priority>")
+journalctl -b --priority=$(cut -d: -f1 <<< "<priority>")
 
-$ priority: echo -ne "0: emerg\n1: alert\n2: crit\n3: err\n4: warning\n5: notice\n6: info\n7: debug"
+$ priority: echo -ne "0: emerg\n1: alert\n2: crit\n3: err\n4: warning\n5: notice\n6: info\n7: debug" --- --preview "journalctl -b --priority=$(cut -d: -f1 <<< {})"

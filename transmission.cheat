@@ -7,28 +7,28 @@ transmission-remote -l
 watch -t 'transmission-remote -l'
 
 # start torrent
-transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -S
+transmission-remote -t <all_torrents> -S
 
 # start all torrents
 transmission-remote -t all -s
 
 # stop torrent
-transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -S
+transmission-remote -t <all_torrents> -S
 
 # stop all torrents
 transmission-remote -t all -S
 
 # get torrent info
-transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -i
+transmission-remote -t <all_torrents> -i
 
 # watch torrent info
-watch -t transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -i
+watch -t transmission-remote -t <all_torrents>  -i
 
-# list files in torrent 
-transmission-remote -t $(echo "<all_torrents>" | awk '{print $1}') -f
+# list files in torrent
+transmission-remote -t <all_torrents> -f
 
 
-$ all_torrents: transmission-remote -t all -l | head -n -1 --- --header-lines 1
+$ all_torrents: transmission-remote -t all -l | head -n -1 --- --column 2 --header-lines 1
 
 ; TODO: filter active/stopped/idle torrents
 $ stopped_torrent: transmission-remote -t all -l
