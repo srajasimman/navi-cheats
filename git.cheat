@@ -1,15 +1,22 @@
-% git, srht, sourcehut
+% git, history
+
+# git interactive rebase from commit
+git rebase -i <commit>
+
+# git interactive rebase from branch
+git rebase -i <other_branch>
+
+$ commit: git log --oneline --- --column 1 --preview "git show $(cut -d ' ' -f1 <<< {})"
+$ other_branch: git branch | grep -v '^\*'
+
+% srht, sourcehut, git
+@ git, history
 
 # add new srht remote repo
 git remote add srht git@git.sr.ht:~h4n1/$(basename $(git rev-parse --show-toplevel))
 
 # add new srht remote repo (custom name)
 git remote add srht git@git.sr.ht:~h4n1/<name>
-
-% git, history, rebase, squash
-
-# git interactive rebase
-git rebase -i <target_commit>
 
 # list sourcehut git repos
 hut git list
@@ -20,7 +27,6 @@ hut git show <srht_repo_w_priv>
 # clone sourcehut repo
 git clone git@git.sr.ht:<srht_user>/<srht_repo>
 
-$ target_commit: git log --oneline --- --column 1 --preview "git show $(cut -d ' ' -f1 <<< {})"
 $ srht_repo_w_priv: hut git list | grep '^[^ ]' --- --column 1 --preview "hut git show $(cut -d ' ' -f1 <<< {})"
 $ srht_repo: hut git list | grep '^[^ ]' --- --column 1 --preview  "hut git show $(cut -d ' ' -f1 <<< {})"
 $ srht_user: hut meta show | awk 'NR==1{print $1}'
