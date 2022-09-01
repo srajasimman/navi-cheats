@@ -1,4 +1,4 @@
-% pacman, arch, packages
+% pacman, packages, package manager, arch
 @ environment, env var, path
 ; see: https://wiki.archlinux.org/title/Pacman/Rosetta
 
@@ -86,8 +86,8 @@ pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n
 # browse missing dependencies for package
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T - | tr -s ' ' "\n" | fzf --preview='pacman -Si {}'
 
-# list packages by install date
-expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
+# search packages by install date (latest build)
+expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort | fzf
 
 # limited dependency tree for package
 pactree --depth <number> <available_package>
@@ -100,6 +100,15 @@ pactree -cr <installed_package>
 
 # dependency tree for non-installed package
 pactree -cs <not_installed_package>
+
+# original install date for package
+paclog --package <installed_package> | head -n 1
+
+# transaction log for installed package
+paclog --package <installed_package>
+
+# pacman warnings
+paclog --warnings
 
 $ installed_package: pacman -Q | awk '{print $1}' --- --preview "pacman -Qi {}"
 $ installed_package_explicit: pacman -Qe | awk '{print $1}' --- --preview "pacman -Qi {}"
