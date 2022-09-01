@@ -9,22 +9,32 @@ tar -czf <path_to_create>.tar.gz <path_to_create>
 # create compressed (xz) tarball
 tar -cJf <path_to_create>.tar.xz <path_to_create>
 
+# create compressed (xz, maximum) tarball, multithreaded
+env XZ_OPT='-9 -T0' tar -cJf <path_to_create>.tar.xz <path_to_create>
+
 $ path_to_create: find . ! -name . -prune -type d -printf '%P\n'
 ; list all directories, hidden and non-hidden (https://unix.stackexchange.com/a/1647)
 
 % tar, extract
 
-# extract tarball
-tar -xvf <tarball>
-
 # list contents of tarball
 tar -tf <tarball>
 
-# extract compressed tarball
-tar -xzvf <tarball_compressed>
+# list contents of compressed (gzip) tarball
+tar -tzf <tarball_gz>
 
-# list contents of compressed tarball
-tar -tzf <tarball_compressed>
+# list contents of compressed (xz) tarball
+tar -tJf <tarball_gz>
 
-$ tarball_compressed: ls -1 *.{tar.gz,tgz}
+# extract tarball
+tar -xvf <tarball>
+
+# extract compressed (gzip) tarball
+tar -xzvf <tarball_gz>
+
+# extract compressed (xz) tarball
+tar -xJvf <tarball_xz>
+
+$ tarball_gz: ls -1 *.{tar.gz,tgz}
+$ tarball_xz: ls -1 *.{tar.xz}
 $ tarball: ls -1 *.tar
