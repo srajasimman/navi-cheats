@@ -35,6 +35,6 @@ tar -xzvf <tarball_gz>
 # extract compressed (xz) tarball
 tar -xJvf <tarball_xz>
 
-$ tarball_gz: ls -1 *.{tar.gz,tgz}
-$ tarball_xz: ls -1 *.{tar.xz}
+$ tarball_gz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.gz' -or -name '*.tgz'
+$ tarball_xz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.xz'
 $ tarball: ls -1 *.tar
