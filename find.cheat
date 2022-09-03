@@ -1,0 +1,13 @@
+% find, list
+
+# list directories directly under cwd
+find . -maxdepth 1 -mindepth 1 -type d
+
+# list all files in cwd
+find . -maxdepth 1 -mindepth 1 -type f
+
+# list files in cwd, recursively
+find . -type f
+
+# find a file under the cwd
+find . -name '<search_pattern>'
