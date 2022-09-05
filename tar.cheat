@@ -43,6 +43,9 @@ tar -xzvf <tarball_gz>
 # extract compressed (xz) tarball
 tar -xJvf <tarball_xz>
 
+# extract compressed (zstd) tarball
+tar -I unzstd -xvf <tarball_zst>
+
 $ tarball_gz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.gz' -or -name '*.tgz'
 $ tarball_xz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.xz'
 $ tarball_zst: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.zst'
