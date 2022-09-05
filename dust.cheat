@@ -1,0 +1,17 @@
+% dust, du, disk usage
+; https://github.com/bootandy/dust
+
+# drive space usage, excluding home directory
+dust -x -v '^/home' /
+
+# drive space usage in home directory
+dust -x ~
+
+# top-level drive space usage in root directory
+dust -d 1 -x /
+
+# top-level drive space usage in home directory
+dust -d 1 -x ~
+
+# top-level drive space usage in cwd
+dust -d 1 -x
