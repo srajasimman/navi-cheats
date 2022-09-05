@@ -21,7 +21,7 @@ tar -I 'zstd -T0 -<zstd_level>' -cf <path_to_create>.tar.zst <path_to_create>
 $ path_to_create: find . ! -name . -prune -type d -printf '%P\n'
 ; list all directories, hidden and non-hidden (https://unix.stackexchange.com/a/1647)
 
-$ zstd_level: echo -e "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19"
+$ zstd_level: echo -e "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20 --ultra\n21 --ultra\n22 --ultra"
 
 % tar, extract
 
