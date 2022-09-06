@@ -110,15 +110,15 @@ paclog --package <installed_package>
 # pacman warnings
 paclog --warnings
 
-$ installed_package: pacman -Q | awk '{print $1}' --- --preview "pacman -Qi {}"
-$ installed_package_explicit: pacman -Qe | awk '{print $1}' --- --preview "pacman -Qi {}"
-$ installed_package_dependency: pacman -Qd | awk '{print $1}' --- --preview "pacman -Qi {}"
-$ installed_package_foreign: pacman -Qm | awk '{print $1}' --- --preview "pacman -Qi {}"
-$ installed_package_orphan: pacman -Qdtq --- --preview "pacman -Qi {}"
+$ installed_package: pacman -Qq --- --preview "pacman -Qi {}"
+$ installed_package_explicit: pacman -Qqe --- --preview "pacman -Qi {}"
+$ installed_package_dependency: pacman -Qqd --- --preview "pacman -Qi {}"
+$ installed_package_foreign: pacman -Qqm --- --preview "pacman -Qi {}"
+$ installed_package_orphan: pacman -Qqdt --- --preview "pacman -Qi {}"
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
 $ available_package: pacman -Slq --- --preview "pacman -Si {}"
 $ not_installed_package: comm -13 \
-  <(pacman -Q | awk '{print $1}' | sort) \
+  <(pacman -Qq | sort) \
   <(pacman -Slq | sort) \
   --- --preview "pacman -Si {}"
 $ file: ls -a .
