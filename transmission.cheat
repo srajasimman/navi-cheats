@@ -7,7 +7,7 @@ transmission-remote -l
 watch -t 'transmission-remote -l'
 
 # start torrent
-transmission-remote -t <all_torrents> -S
+transmission-remote -t <all_torrents> -s
 
 # start all torrents
 transmission-remote -t all -s
