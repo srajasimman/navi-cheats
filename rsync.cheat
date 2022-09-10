@@ -1,0 +1,7 @@
+% rsync, cp, copy, progress
+
+# copy file with global progress (like cp)
+rsync -h --info=progress2 <source> <target>
+
+# copy directory with global progress (like cp -r)
+rsync -rh --info=progress2 <source> <target>
