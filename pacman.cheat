@@ -14,6 +14,9 @@ checkupdates
 # install a package
 sudo pacman -S <not_installed_package>
 
+# browse installed packages
+pacman -Qq | fzf --preview "pacman -Qi {}"
+
 # info about installed package
 pacman -Qi <installed_package>
 
