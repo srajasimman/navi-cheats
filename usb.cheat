@@ -1,0 +1,4 @@
+% usb, power
+
+# usb device max power draw
+lsusb -v | grep -E "^Bus|MaxPower"

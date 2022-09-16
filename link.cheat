@@ -1,0 +1,7 @@
+% symlink, symbolic link, filesystem
+
+# create symbolic link
+ln -s <source> <dest>
+
+# get real (physical) path of current directory
+pwd -P
