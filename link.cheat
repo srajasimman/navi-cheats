@@ -5,3 +5,6 @@ ln -s <source> <dest>
 
 # get real (physical) path of current directory
 pwd -P
+
+# cd to resolved path of current directory
+cd -P .
