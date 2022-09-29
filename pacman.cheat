@@ -68,8 +68,11 @@ sudo pacman -D --asdeps <installed_package_explicit>
 # downgrade package
 sudo pacman -U <cached_package>
 
-# which package could provide a file/command
+# which package could provide a file
 pacman -F <command>
+
+# which package could provide a command (highlight 'bin' files)
+pacman -F <command> | grep --color=always -e "^" -e "bin"
 
 # list foreign (not in main repos) packages
 pacman -Qm

@@ -1,0 +1,4 @@
+% grep, search
+
+# highlight grep search results
+grep --color=always -e "^" -e "<search>"
