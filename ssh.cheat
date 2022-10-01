@@ -1,0 +1,6 @@
+% ssh, key, keygen, auth
+
+# view this machine's ssh hostkey fingerprint
+ssh-keygen -lvf <hostkey>
+
+$ hostkey: find /etc/ssh/ -name ssh_host*_key.pub
