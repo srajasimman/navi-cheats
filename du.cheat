@@ -1,3 +1,17 @@
+% du, disk usage
+
+# drive space usage (folders) in cwd
+du -xh .
+
+# top-level drive space usage in cwd
+du -xh -d 1
+
+# top-level drive space usage (all files) in cwd
+du -xha -d 1
+
+# ls cwd, sorted by disk usage
+du -xha -d 1 . | sort -h
+
 % dust, du, disk usage
 ; https://github.com/bootandy/dust
 
