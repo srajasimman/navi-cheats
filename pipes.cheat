@@ -46,3 +46,21 @@ tr ' ' '\n'
 # run command on every line of input
 xargs -I _ '<command> _'
 
+% stdin, pipe, sort
+
+# sort input by nth column, specify delimiter
+sort -k <n> -t '<delimiter'
+
+# sort, keeping only unique lines
+sort -u
+
+% stdin, pipe, filter
+
+# merge adjacent duplicated lines
+uniq
+
+# get only unique (adjecent) lines
+uniq -u
+
+# get only duplicated (adjecent) lines
+uniq -d
