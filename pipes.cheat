@@ -1,0 +1,48 @@
+% unix, pipe, stdin
+
+% stdin, pipe, line
+
+# get first line of input
+head -n 1
+
+# get last line of input
+tail -n 1
+
+# remove first line from input
+tail -n +2
+
+# remove last line from output
+head -n -1
+
+# get nth line of input
+; https://stackoverflow.com/a/6022431
+sed '<n>q;d'
+
+% stdin, pipe, column
+
+# get nth column of input, tab-delimited
+cut -f <n>
+
+# get nth column of input, specify delimiter
+cut -d'<delimiter>' -f <n>
+
+# remove first column of input, specify delimiter
+cut -d'<delimiter>' -f 2-
+
+# get last column of input, specify delimiter (cut + rev method)
+; https://stackoverflow.com/a/22727211
+rev | cut -d'<delimiter>' -f 1 | rev
+
+# get last column of input, specify delimiter (awk method)
+awk -F '<delimiter' '{print $NF}'
+
+% stdin, pipe, replace
+
+# replace spaces with newlines
+tr ' ' '\n'
+
+% stdin, pipe, xargs
+
+# run command on every line of input
+xargs -I _ '<command> _'
+
