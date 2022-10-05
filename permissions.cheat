@@ -1,0 +1,7 @@
+% permissions, mode, rwx
+
+# make all files under cwd readable only by owner
+chmod -R go= .
+
+# remove execute permission from all files under cwd
+find . -type f -executable -exec chmod ugo-x {} \;
