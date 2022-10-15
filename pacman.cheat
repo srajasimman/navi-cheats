@@ -44,6 +44,9 @@ pacman -Qo <all_in_path>
 # which files are provided by a local package
 pacman -Ql <installed_package>
 
+# browse files provided by a local package
+pacman -Qlq <installed_package> | fzf --preview='bat -f 2>/dev/null {} || ls {}'
+
 # which package requires this as a dependency
 pacman -Qi <installed_package_dependency> | grep 'Required By'
 
