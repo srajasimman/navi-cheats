@@ -72,7 +72,7 @@ sudo pacman -D --asexplicit <installed_package_dependency>
 sudo pacman -D --asdeps <installed_package_explicit>
 
 # downgrade package
-sudo pacman -U <cached_package>
+sudo pacman -U /var/cache/pacman/pkg/<cached_package>
 
 # which package could provide a file
 pacman -F <command>
@@ -136,7 +136,7 @@ $ not_installed_package: comm -13 \
   <(pacman -Slq | sort) \
   --- --preview "pacman -Si {}"
 $ file: find . -maxdepth 1 -mindepth 1 -type f -printf '%P\n'
-$ cached_package: find /var/cache/pacman/pkg
+$ cached_package: find /var/cache/pacman/pkg/ -name *.pkg.tar.zst -type f -printf '%P\n'
 ; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
 ; ↑ cleaner output but not what the downgrade command needs
 $ installed_command: compgen -c
