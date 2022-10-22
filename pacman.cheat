@@ -41,6 +41,9 @@ pacman -Qo <file_in_path>
 # which package provides an executable in $PATH
 pacman -Qo <all_in_path>
 
+# which package provides a file
+pacman -Qo <file>
+
 # which files are provided by a local package
 pacman -Ql <installed_package>
 
@@ -132,7 +135,7 @@ $ not_installed_package: comm -13 \
   <(pacman -Qq | sort) \
   <(pacman -Slq | sort) \
   --- --preview "pacman -Si {}"
-$ file: ls -a .
+$ file: find . -maxdepth 1 -mindepth 1 -type f -printf '%P\n'
 $ cached_package: find /var/cache/pacman/pkg
 ; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
 ; ↑ cleaner output but not what the downgrade command needs
