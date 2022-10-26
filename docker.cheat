@@ -7,7 +7,7 @@ systemctl start docker.service
 systemctl stop docker.service
 
 $ container_name: docker container ls --all --- --column 6 --header-lines 1 --multi --expand
-$ container_id: docker container ls --all --- --column 1 --header-lines 1 --multi --expand
+$ container_id: docker container ls --all --- --column 1 --header-lines 1
 $ image_id: docker images --all --- --column 3 --header-lines 1 --multi --expand
 
 % docker, container
@@ -20,19 +20,25 @@ docker container ls
 docker container ls --all
 
 # start a container
-docker container start <container_name>
+docker container start <container_id>
+
+# start a container and attach terminal
+docker container start <container_id> -i
 
 # stop a container
-docker container stop <container_name>
+docker container stop <container_id>
 
 # delete container
 docker container rm <container_name>
 
 # show container logs
-docker logs <container_name>
+docker logs <container_id>
 
 # follow container logs
-docker logs <container_name> -f
+docker logs <container_id> -f
+
+# attach terminal to container
+docker container attach <container_name>
 
 % docker, image
 @ docker
