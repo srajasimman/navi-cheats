@@ -1,0 +1,45 @@
+% docker
+
+# start docker (systemd)
+systemctl start docker.service
+
+# stop docker (systemd)
+systemctl stop docker.service
+
+$ container_name: docker container ls --all --- --column 6 --header-lines 1 --multi --expand
+$ container_id: docker container ls --all --- --column 1 --header-lines 1 --multi --expand
+$ image_id: docker images --all --- --column 3 --header-lines 1 --multi --expand
+
+% docker, container
+@ docker
+
+# list running containers
+docker container ls
+
+# list all containers
+docker container ls --all
+
+# start a container
+docker container start <container_name>
+
+# stop a container
+docker container stop <container_name>
+
+# delete container
+docker container rm <container_name>
+
+# show container logs
+docker logs <container_name>
+
+# follow container logs
+docker logs <container_name> -f
+
+% docker, image
+@ docker
+
+# list images
+docker images
+
+# remove image
+docker rmi <image_id>
+
