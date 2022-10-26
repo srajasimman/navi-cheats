@@ -124,13 +124,13 @@ paclog --package <installed_package>
 # pacman warnings
 paclog --warnings
 
-$ installed_package: pacman -Qq --- --preview "pacman -Qi {}"
-$ installed_package_explicit: pacman -Qqe --- --preview "pacman -Qi {}"
-$ installed_package_dependency: pacman -Qqd --- --preview "pacman -Qi {}"
-$ installed_package_foreign: pacman -Qqm --- --preview "pacman -Qi {}"
-$ installed_package_orphan: pacman -Qqdt --- --preview "pacman -Qi {}"
+$ installed_package: pacman -Qq --- --preview "pacman -Qi {}" --multi --expand
+$ installed_package_explicit: pacman -Qqe --- --preview "pacman -Qi {}" --multi --expand
+$ installed_package_dependency: pacman -Qqd --- --preview "pacman -Qi {}" --multi --expand
+$ installed_package_foreign: pacman -Qqm --- --preview "pacman -Qi {}" --multi --expand
+$ installed_package_orphan: pacman -Qqdt --- --preview "pacman -Qi {}" --multi --expand
 $ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
-$ available_package: pacman -Slq --- --preview "pacman -Si {}"
+$ available_package: pacman -Slq --- --preview "pacman -Si {}" --multi --expand
 $ not_installed_package: comm -13 \
   <(pacman -Qq | sort) \
   <(pacman -Slq | sort) \
@@ -140,4 +140,4 @@ $ cached_package: find /var/cache/pacman/pkg/ -name *.pkg.tar.zst -type f -print
 ; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
 ; ↑ cleaner output but not what the downgrade command needs
 $ installed_command: compgen -c
-$ package_group: pacman -Sg --- --preview "pacman -Sgq {}"
+$ package_group: pacman -Sg --- --preview "pacman -Sgq {}" --multi --expand

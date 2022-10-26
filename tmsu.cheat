@@ -32,10 +32,10 @@ $ dir: find . -type d
 $ file_in_cwd: find . -maxdepth 1 -type f
 $ dir_in_cwd: find . -maxdepth 1 -type d
 
-$ tags: tmsu tags
-$ tags_with_values: tmsu tags --value
-$ value: tmsu values
-$ tagged_file_or_dir: tmsu files
-$ file_tag: tmsu tags "<tagged_file_or_dir>"
-$ untagged_in_cwd: tmsu untagged -d
-$ untagged_all: tmsu untagged
+$ tags: tmsu tags --- --multi --expand
+$ tags_with_values: tmsu tags --value --- --multi --expand
+$ value: tmsu values --- --multi --expand
+$ tagged_file_or_dir: tmsu files --- --multi --expand
+$ file_tag: tmsu tags "<tagged_file_or_dir>" --- --multi --expand
+$ untagged_in_cwd: tmsu untagged -d --- --multi --expand
+$ untagged_all: tmsu untagged --- --multi --expand

@@ -53,16 +53,16 @@ sudo dmesg -H --level err
 
 
 $ loaded_module: lsmod \
-  --- --column 1 --header-lines 1
+  --- --column 1 --header-lines 1 --multi --expand
 
-$ available_module: basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*')
+$ available_module: basename -a -s .ko.zst $(find /lib/modules/$(uname -r) -type f -name '*.ko*') --- --multi --expand
 
 $ unloaded_module: comm -13 \
   <(cat /proc/modules | cut -d ' ' -f 1 | sort) \
   <(basename -a -s .ko.zst \
     $(find /lib/modules/$(uname -r) -type f -name '*.ko*') | \
   tr -- - _ | sort) \
-  --- --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})'
+  --- --preview 'modinfo --field description $(cut -d " " -f 1 <<< {})' --multi --expand
 
 ; `cat /proc/modules` = lists loaded modules with other info, removed by `cut`
 ; `basename` over `find` shows available modules, `tr` changes - in module names to _, to match /proc/modules or lsmod.
