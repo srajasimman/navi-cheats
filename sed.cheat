@@ -1,0 +1,4 @@
+% sed, replace, edit
+
+# replace pattern in all files under cwd
+rg -l <pattern> | xargs sed -i 's/<pattern>/<replacement>/g'
