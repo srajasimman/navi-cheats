@@ -1,0 +1,16 @@
+% pdf
+
+# extract page range from pdf
+pdftk <pdf_input> cat <start_page>-<end_page> output <pdf_output>.pdf
+
+# extract page range from pdf, with offset
+pdftk <pdf_input> cat $((<offset>+<start_page>))-$((<offset>+<end_page>)) output <pdf_output>.pdf
+
+# merge pdfs
+pdftk <pdf_input> cat <start_page>-<end_page> output <pdf_output>.pdf
+
+# split pdf pages into files
+pdftk <pdf_input> burst output <pdf_input>-p%d.pdf
+
+$ pdf_input: find . -maxdepth 1 -name '*.pdf' -type f -printf '%P\n'
+$ pdf_pages: exiftool <pdf_input> | grep 'Page Count' | cut -d':' -f 2
