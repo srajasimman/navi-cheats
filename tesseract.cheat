@@ -1,0 +1,8 @@
+% ocr, tesseract
+
+# ocr images in directory, in parallel
+; https://stackoverflow.com/a/47960441/19167042
+parallel --bar 'tesseract {} {.} > /dev/null 2>&1' ::: $(file --mime-type --dereference -L ./* | awk -F ':' '$2 ~ "image/*" { print $1 }')
+
+# ocr (jpg) images in directory, for loop
+for i in *.jpg; do tesseract "$i" "$i"; done
