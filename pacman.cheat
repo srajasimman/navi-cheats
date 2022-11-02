@@ -98,8 +98,8 @@ pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n
 # browse missing dependencies for package
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | pacman -T - | tr -s ' ' "\n" | fzf --preview='pacman -Si {}'
 
-# search packages by install date (latest build)
-expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort | fzf
+# list packages by install / upgrade date (latest build)
+expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort -r | fzf
 
 # limited dependency tree for package
 pactree --depth <number> <available_package>
@@ -119,7 +119,7 @@ paclog --package <installed_package> | head -n 1
 ;for p in `pacman -Qq`; do echo "$p $(paclog --package $p | head -n 1)"; done
 
 # transaction log for installed package
-paclog --package <installed_package>
+paclog --package <installed_packages_bydate>
 
 # pacman warnings
 paclog --warnings
@@ -129,7 +129,7 @@ $ installed_package_explicit: pacman -Qqe --- --preview "pacman -Qi {}" --multi 
 $ installed_package_dependency: pacman -Qqd --- --preview "pacman -Qi {}" --multi --expand
 $ installed_package_foreign: pacman -Qqm --- --preview "pacman -Qi {}" --multi --expand
 $ installed_package_orphan: pacman -Qqdt --- --preview "pacman -Qi {}" --multi --expand
-$ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort
+$ installed_packages_bydate: expac --timefmt='%Y-%m-%d %T' '%l  %n' | sort -r --- --column 2
 $ available_package: pacman -Slq --- --preview "pacman -Si {}" --multi --expand
 $ not_installed_package: comm -13 \
   <(pacman -Qq | sort) \
