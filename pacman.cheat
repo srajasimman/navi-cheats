@@ -26,7 +26,13 @@ pacman -Qi <installed_package_explicit>
 # info about available but not installed package
 pacman -Si <not_installed_package>
 
-# remove package incl. deps + config files
+# uninstall (remove) package
+sudo pacman -R <installed_package_explicit>
+
+# uninstall (remove) package and dependencies
+sudo pacman -Rs <installed_package_explicit>
+
+# uninstall (remove) package, deps + config files
 sudo pacman -Rns <installed_package_explicit>
 
 # which package provides a file
