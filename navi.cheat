@@ -10,7 +10,7 @@ cd "$(navi info cheats-path)/personal" && git add -A && git commit -a -m "<messa
 cd "$(navi info cheats-path)/personal"
 
 # edit cheatsheet
-$EDITOR "$(navi info cheats-path)/personal/<sheet>.cheat"
+cd "$(navi info cheats-path)/personal" && $EDITOR "<sheet>.cheat"
 
 $ sheet: find "$(navi info cheats-path)/personal" -maxdepth 1 -type f | \
   xargs basename -s ".cheat" \
