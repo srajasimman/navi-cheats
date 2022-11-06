@@ -25,7 +25,7 @@ tmsu files -f "<tags>"
 ; tmsu untag "<tagged_file_or_dir>" "<file_tag>"
 
 # frequency of tags associated with other tag
-tmsu files '<tag>' | xargs -I _ tmsu tags -n never "_" | sort | uniq -c | sort -hk 1
+tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -c | sort -hk 1
 
 
 $ file_or_dir: ls .
