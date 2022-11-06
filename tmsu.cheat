@@ -9,8 +9,8 @@ tmsu tag "<untagged_in_cwd>" "<tags>"
 # tag a dir and its contents recursively
 tmsu tag -r "<dir>" "<tags>"
 
-; # see values associated with a tag
-; tmsu values "<tags_with_values>"
+# see values associated with a tag
+tmsu values "<tags_with_values>"
 
 # which tags does a value apply to
 tmsu tags -u "<value>"
@@ -21,8 +21,10 @@ tmsu files "<tags>"
 # list only files with a tag
 tmsu files -f "<tags>"
 
-; # untag a file
-; tmsu untag "<tagged_file_or_dir>" "<file_tag>"
+; # remove tag from a file
+; tmsu untag --tags="<file_tags>" "<tagged_file_or_dir>"
+; echo "<tagged_file_or_dir>" | xargs tmsu untag --tags="<file_tags>"
+
 
 # change a tag into a value
 tmsu files -0 "<tag>" | xargs -0 tmsu tag --tags="<new_key>=<tag>" && tmsu delete "<tag>"
@@ -40,11 +42,11 @@ $ dir_in_cwd: find . -maxdepth 1 -type d
 $ tag: tmsu tags
 $ new_key: tmsu tags
 $ tags: tmsu tags --- --multi --expand
-$ tag_with_values: tmsu tags --value
+$ tag_with_values: tmsu tags --value --- --preview='tmsu values "{}"'
 $ tags_with_values: tmsu tags --value --- --multi --expand
 $ value: tmsu values
 $ values: tmsu values --- --multi --expand
 $ tagged_file_or_dir: tmsu files --- --multi --expand
-$ file_tags: tmsu tags "<tagged_file_or_dir>" --- --multi --expand
+$ file_tags: tmsu tags -n never "<tagged_file_or_dir>" --- --multi --expand
 $ untagged_in_cwd: tmsu untagged -d --- --multi --expand
 $ untagged_all: tmsu untagged --- --multi --expand
