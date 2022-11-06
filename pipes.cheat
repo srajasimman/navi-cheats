@@ -57,13 +57,16 @@ sort -k <n> -t '<delimiter>'
 # sort, keeping only unique lines
 sort -u
 
+# count frequency of lines in input
+sort | uniq -c
+
 % stdin, pipe, filter
 
 # merge adjacent duplicated lines
 uniq
 
-# get only unique (adjecent) lines
+# get only unique (adjacent) lines
 uniq -u
 
-# get only duplicated (adjecent) lines
+# get only duplicated (adjacent) lines
 uniq -d
