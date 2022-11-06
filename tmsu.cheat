@@ -32,6 +32,9 @@ tmsu files -0 "<tag>" | xargs -0 tmsu tag --tags="<new_key>=<tag>" && tmsu delet
 # frequency of tags associated with other tag
 tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -c | sort -hk 1
 
+# summarize tags by count
+; https://github.com/oniony/TMSU/wiki/Tricks-and-Tips#summarize-tags-by-count
+for tag in $(tmsu tags); do echo ${tag}: $(tmsu files ${tag} -c); done | sort -t: -k 2 -n -r | column
 
 $ file_or_dir: ls .
 $ file: find . -type f
