@@ -24,6 +24,9 @@ tmsu files -f "<tags>"
 ; # untag a file
 ; tmsu untag "<tagged_file_or_dir>" "<file_tag>"
 
+# change a tag into a value
+tmsu files -0 "<tag>" | xargs -0 tmsu tag --tags="<new_key>=<tag>" && tmsu delete "<tag>"
+
 # frequency of tags associated with other tag
 tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -c | sort -hk 1
 
@@ -35,6 +38,7 @@ $ file_in_cwd: find . -maxdepth 1 -type f
 $ dir_in_cwd: find . -maxdepth 1 -type d
 
 $ tag: tmsu tags
+$ new_key: tmsu tags
 $ tags: tmsu tags --- --multi --expand
 $ tag_with_values: tmsu tags --value
 $ tags_with_values: tmsu tags --value --- --multi --expand
