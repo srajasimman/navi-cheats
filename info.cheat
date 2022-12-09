@@ -6,4 +6,4 @@ stat / | grep Birth
 # get time in other time zone
 env TZ=<timezone> date
 
-$timezone: find /usr/share/zoneinfo -type f -mindepth 2 -maxdepth 2 -printf '%P\n'
+$timezone: timedatectl list-timezones
