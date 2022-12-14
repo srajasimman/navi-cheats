@@ -5,3 +5,9 @@ nc -z -v <remote_address> 1-65535 2>&1 | grep -v 'Connection refused'
 
 # list open ports on local device
 sudo lsof -i -P -n | grep LISTEN
+
+# see ports listened on by process (as user)
+netstat -tulpn 2>/dev/null | fzf --header-lines=2
+
+# see ports listened on by process (as root)
+sudo netstat -tulpn | fzf --header-lines=2
