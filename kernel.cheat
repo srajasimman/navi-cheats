@@ -25,7 +25,7 @@ modinfo --field description <unloaded_module>
 sudo modprobe -r <loaded_module>
 
 # reload a kernel module
-for mod in "<loaded_module>"; do sudo modprobe -r $mod; sudo modprobe $mod; done
+for mod in <loaded_module>; do sudo modprobe -r $mod; sudo modprobe $mod; done
 
 # load an unloaded kernel module
 sudo modprobe <unloaded_module>
