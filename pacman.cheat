@@ -11,7 +11,7 @@ sudo pacman -Syyu
 # check for package updates
 checkupdates
 
-# install a package
+# install (sync) a package
 sudo pacman -S <not_installed_package>
 
 # browse installed packages
@@ -23,7 +23,7 @@ pacman -Qi <installed_package>
 # info about explicitly installed package
 pacman -Qi <installed_package_explicit>
 
-# info about available but not installed package
+# info about available (not installed) package
 pacman -Si <not_installed_package>
 
 # uninstall (remove) package
@@ -35,7 +35,7 @@ sudo pacman -Rs <installed_package_explicit>
 # uninstall (remove) package, deps + config files
 sudo pacman -Rns <installed_package_explicit>
 
-# which package provides a file
+# which package provides (owns) a file
 pacman -Qo <file>
 
 # which package provides a command
