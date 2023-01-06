@@ -1,0 +1,15 @@
+% ffmpeg, video, compress
+; https://unix.stackexchange.com/a/38380
+
+# reencode video with h265, to a constant rate factor
+ffmpeg -i <video_file> -vcodec libx265 -crf <265_crf> -preset <265_compression_preset> <video_file>-h265-<265_crf>
+
+# reencode video with h265, to given bitrate
+ffmpeg -i <video_file> -b <new_bitrate> <video_file>-<new_bitrate>
+
+; TODO: pick only video files
+$ video_file: find . -maxdepth 1 -type f
+$ 265_crf: echo {1..51} | tr ' ' '\n' --- --header "lower: better quality / default: 28"
+$ 265_compression_preset: echo 'ultrafast superfast veryfast faster fast medium slow slower veryslow' | tr ' ' '\n' --- --header "encoding speed / default: medium"
+; TODO: bitrate list
+; $ new_bitrate: echo {1..20}M
