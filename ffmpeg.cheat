@@ -2,10 +2,10 @@
 ; https://unix.stackexchange.com/a/38380
 
 # reencode video with h265, to a constant rate factor
-ffmpeg -i '<video_file>' -vcodec libx265 -crf <265_crf> -preset <265_compression_preset> 'h265-<265_crf>-<video_file>'
+ffmpeg -i '<video_file>' -vcodec libx265 -crf <265_crf> -preset <265_compression_preset> '<video_file>-h265-<265_crf>.mp4'
 
 # reencode video with h265, to given bitrate
-ffmpeg -i '<video_file>' -b <new_bitrate> '<new-bitrate>-<video_file>'
+ffmpeg -i '<video_file>' -vcodec libx265 -b <new_bitrate> '<video_file>-h265-<newbitrate>.mp4'
 
 ; TODO: pick only video files
 $ video_file: find . -maxdepth 1 -type f -printf '%f\n'
