@@ -11,6 +11,9 @@ sudo pacman -Syyu
 # check for package updates
 checkupdates
 
+# search for a package
+pacman -Ss <search_string>
+
 # install (sync) a package
 sudo pacman -S <not_installed_package>
 
@@ -55,6 +58,9 @@ pacman -Ql <installed_package>
 
 # browse files provided by a local package
 pacman -Qlq <installed_package> | fzf --preview='bat -f 2>/dev/null {} || ls {}'
+
+# which files would be provided by an available package
+pacman -Flq <not_installed_package>
 
 # which package requires this as a dependency
 pacman -Qi <installed_package_dependency> | grep 'Required By'
