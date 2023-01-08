@@ -26,6 +26,9 @@ pacman -Qi <installed_package>
 # info about explicitly installed package
 pacman -Qi <installed_package_explicit>
 
+# sizes of all installed packages
+LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h | column -t
+
 # info about available (not installed) package
 pacman -Si <not_installed_package>
 
@@ -71,6 +74,9 @@ pacman -Ss <package>
 # list orphaned packages (no longer required as deps)
 pacman -Qdt
 
+# sizes of all orphaned packages
+LC_ALL=C pacman -Qdti | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h | column -t
+
 # remove an orphaned package
 sudo pacman -Rns <installed_package_orphan>
 
@@ -94,6 +100,9 @@ pacman -F <command> | grep --color=always -e "^" -e "bin"
 
 # list foreign (not in main repos) packages
 pacman -Qm
+
+# sizes of all foreign packages
+LC_ALL=C pacman -Qmi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h | column -t
 
 # browse package groups
 <package_group>
