@@ -3,4 +3,4 @@
 # get size of remote file
 
 ; request header    ; extract size                          ; human-readable
-curl -sI <file_url> | sed -n "/content-length/s/[^0-9]//gp" | numfmt --to=iec
+curl -sI <file_url> | sed -n "/content-length/s/[^0-9]//gp" | numfmt --to=si

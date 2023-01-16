@@ -10,7 +10,7 @@ du -xh -d 1
 du -xha -d 1
 
 # ls cwd, sorted by disk usage
-du -xa -d 1 . | sort -n | numfmt --field=1 --padding=6 --to=iec
+du -xa -d 1 . | sort -n | numfmt --field=1 --padding=6 --to=si
 
 % dust, du, disk usage
 ; https://github.com/bootandy/dust

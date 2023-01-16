@@ -52,7 +52,7 @@ tar -I unzstd -xvf <tarball_zst>
 ; awk bit: https://superuser.com/a/614882
 ; make human-readable: https://stackoverflow.com/a/37016129
 ; might not work with every format
-tar -tvf <tarball_anycomp> | awk '{i+=$3} END{print i}' | numfmt --to=iec
+tar -tvf <tarball_anycomp> | awk '{i+=$3} END{print i}' | numfmt --to=si
 
 $ tarball_gz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.gz' -or -name '*.tgz'
 $ tarball_xz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.xz'
