@@ -6,8 +6,11 @@ find . -maxdepth 1 -mindepth 1 -type d
 # list all files in cwd
 find . -maxdepth 1 -mindepth 1 -type f
 
-# list files in cwd, recursively
+# list files under cwd, recursively
 find . -type f
+
+# list files under cwd, recursively, by size
+find . -type f -printf '%s\t%p\n' | sort -g | numfmt --field=1 --to=si --padding=-5
 
 # search for a string under the cwd
 find . -name '*<search_pattern>*'
