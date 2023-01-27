@@ -6,8 +6,9 @@ xdg-mime query default $(xdg-mime query filetype <file>)
 # set application as default for mimetype of file
 echo "add to mimeapps.list: $(xdg-mime query filetype <file>)=<application>"
 
-# list files by mimetype (following symlinks)
-file --mime-type --dereference -L ./* | awk -F ':' '$2 ~ "<type>/*" { print $1 }'
+# list files in cwd of mimetype (following symlinks)
+file --mime-type --dereference -L ./* | awk -F ':' '$2 ~ "<type>" { print $1 }'
 
 $ file: find . -maxdepth 1 -type f -printf '%P\n'
 $ application: find /usr/share/applications/ -name '*.desktop' -printf '%P\n'
+$ type: echo 'text/* image/* audio/* video/* font/* application/* application/pdf' | tr ' ' '\n'

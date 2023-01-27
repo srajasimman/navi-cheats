@@ -1,8 +1,7 @@
 % ffmpeg
 ; https://amiaopensource.github.io/ffmprovisr/
 
-; TODO: pick only video files
-$ video_file: find . -maxdepth 1 -type f -printf '%f\n'
+$ video_file: file --mime-type --dereference -L ./* | awk -F ':' '$2 ~ "video/*" { print $1 }'
 
 % ffmpeg, video, transcode, compress
 @ ffmpeg
