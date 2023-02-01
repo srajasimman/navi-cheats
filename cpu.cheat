@@ -9,3 +9,9 @@ echo <governor> | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | sort -u
 
 $ governor: cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors | tr ' ' '\n'
+
+% cpu, processor, usage, load
+
+# print current cpu usage percentage
+; https://stackoverflow.com/a/9229692
+top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'
