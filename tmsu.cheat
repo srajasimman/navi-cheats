@@ -29,15 +29,12 @@ tmsu files -f "<tags>"
 # change a tag into a value
 tmsu files -0 "<tag>" | xargs -0 tmsu tag --tags="<new_key>=<tag>" && tmsu delete "<tag>"
 
-# frequency of tags associated with other tag
-tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -c | sort -hk 1
+# frequency of tags co-occurring with another tag (similarity)
+tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -cd | sort -rhk 1
 
 # summarize tags by count
 ; https://github.com/oniony/TMSU/wiki/Tricks-and-Tips#summarize-tags-by-count
 for tag in $(tmsu tags); do echo ${tag}: $(tmsu files ${tag} -c); done | sort -t: -k 2 -n -r | column
-
-# frequency of tags co-occurring with a tag (similarity)
-tmsu files <tag> | xargs tmsu tags -n never | sort | uniq -cd | sort -hr
 
 # list all tags and values
 tmsu tags | xargs tmsu values
