@@ -33,7 +33,7 @@ tmsu files -0 "<tag>" | xargs -0 tmsu tag --tags="<new_key>=<tag>" && tmsu delet
 tmsu files -0 '<tag>' | xargs -0 tmsu tags -n never | sort | uniq -cd | sort -rhk 1
 
 # list other files by co-occurring tags (file similarity)
-tmsu tags -n never -1 '<file>' | xargs -I_ tmsu files _ | sort | uniq -cd | sort -rhk 1
+tmsu tags -n never -1 '<tagged_file_or_dir>' | xargs -I_ tmsu files _ | sort | uniq -cd | sort -rhk 1
 
 # summarize tags by count
 ; https://github.com/oniony/TMSU/wiki/Tricks-and-Tips#summarize-tags-by-count
