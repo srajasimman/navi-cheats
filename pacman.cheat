@@ -32,6 +32,9 @@ LC_ALL=C pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}'
 # describe all explicitly installed + orphaned packages, that are not in the base group
 expac -H M '%-20n\t%10d' $(comm -23 <(pacman -Qqt | sort) <({ pacman -Qqg base-devel; echo base; } | sort -u))
 
+# describe all explicitly installed packages or optional dependencies, that are not in the base group
+expac -H M '%-20n\t%10d' $(comm -23 <(pacman -Qqett | sort) <({ pacman -Qqg base-devel; echo base; } | sort -u))
+
 # info about available (not installed) package
 pacman -Si <not_installed_package>
 
