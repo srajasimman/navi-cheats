@@ -1,6 +1,6 @@
 % permissions, mode, rwx
 
-# make all files under cwd readable only by owner
+# remove all permissions from users other than owner
 chmod -R go= .
 
 # remove execute permission from all files under cwd
