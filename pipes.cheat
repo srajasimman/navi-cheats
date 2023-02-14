@@ -39,6 +39,9 @@ awk -F '<delimiter' '{print $NF}'
 # select column from rows of input where other column matches glob
 awk -F '<delimiter>' '$<n_match> ~ "<glob>" { print $<n_print> }'
 
+# format: align at tab characters
+column -s "$(echo -ne '\t')" -t
+
 % stdin, pipe, replace
 
 # replace spaces with newlines
