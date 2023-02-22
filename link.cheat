@@ -8,3 +8,7 @@ pwd -P
 
 # cd to resolved path of current directory
 cd -P .
+
+# find broken symlinks
+; https://unix.stackexchange.com/a/38691
+find . -xtype l
