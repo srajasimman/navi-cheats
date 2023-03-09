@@ -62,7 +62,7 @@ pacman -Qo <all_in_path>
 # which package provides a file
 pacman -Qo <file>
 
-# list files are provided by local package
+# list files provided by local package
 pacman -Qlq <installed_package>
 
 # browse files provided by a local package
