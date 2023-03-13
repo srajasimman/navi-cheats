@@ -1,0 +1,12 @@
+% btrfs
+
+$ directory: find . -maxdepth 1 -type d
+
+% btrfs, compression
+@ btrfs
+
+# add compression to directory
+sudo chattr -R +c <directory> && sudo btrfs filesystem defragment -fr <directory>
+
+# check compression level of directory
+sudo compsize <directory>
