@@ -74,9 +74,6 @@ pacman -Flq <not_installed_package>
 # which package requires this as a dependency
 pacman -Qi <installed_package_dependency> | grep 'Required By'
 
-# search for package
-pacman -Ss <package>
-
 # list orphaned packages (no longer required as deps)
 pacman -Qdt
 
