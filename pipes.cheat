@@ -34,7 +34,7 @@ cut -d'<delimiter>' -f 2-
 rev | cut -d'<delimiter>' -f 1 | rev
 
 # get last column of input, specify delimiter (awk method)
-awk -F '<delimiter' '{print $NF}'
+awk -F '<delimiter>' '{print $NF}'
 
 # select column from rows of input where other column matches glob
 awk -F '<delimiter>' '$<n_match> ~ "<glob>" { print $<n_print> }'
