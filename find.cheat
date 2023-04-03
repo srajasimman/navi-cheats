@@ -12,5 +12,8 @@ find . -type f
 # list files under cwd, recursively, by size
 find . -type f -printf '%s\t%p\n' | sort -g | numfmt --field=1 --to=si --padding=-5
 
+# list files under cwd, recursively, by modification time
+find . -type f -printf '%T+\t%p\n' | sort -r
+
 # search for a string under the cwd
 find . -name '*<search_pattern>*'
