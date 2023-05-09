@@ -148,6 +148,9 @@ paclog --package <installed_packages_bydate>
 # pacman warnings
 paclog --warnings
 
+# list modified package files (in /etc)
+pacman -Qii | awk '/^MODIFIED/ { print $2 }'
+
 $ installed_package: pacman -Qq --- --preview "pacman -Qi {}" --multi --expand
 $ installed_package_explicit: pacman -Qqe --- --preview "pacman -Qi {}" --multi --expand
 $ installed_package_dependency: pacman -Qqd --- --preview "pacman -Qi {}" --multi --expand
