@@ -5,8 +5,11 @@ $ directory: find . -maxdepth 1 -type d
 % btrfs, compression
 @ btrfs
 
-# add zstd compression (default level 3) to directory
-sudo btrfs property set <directory> compression zstd && sudo btrfs filesystem defragment -fr -czstd <directory>
+# enable zstd compression (default level 3) for directory, recursively
+find <directory> -type d,f -exec btrfs property set {} compression zstd \;
+
+# compress directory transparently with zstd
+sudo btrfs filesystem defragment -fr -czstd <directory>
 
 # check compression level of directory
 sudo compsize <directory>
