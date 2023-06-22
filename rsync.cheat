@@ -5,3 +5,6 @@ rsync -h --info=progress2 <source> <target>
 
 # copy directory with global progress (like cp -r)
 rsync -rh --info=progress2 <source> <target>
+
+# update directory (don't copy existing files, preserve attributes)
+rsync -rhau --info=progress2 <source> <target>
