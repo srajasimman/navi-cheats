@@ -1,6 +1,6 @@
 % btrfs
 
-$ directory: find . -maxdepth 1 -type d
+$ directory: find . -maxdepth 1 -type d -exec printf '%q\n' {} \;
 
 % btrfs, compression
 @ btrfs

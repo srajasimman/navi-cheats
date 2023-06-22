@@ -2,7 +2,7 @@
 ; https://amiaopensource.github.io/ffmprovisr/
 
 ; TODO: pick only video files
-$ video_file: find . -maxdepth 1 -type f -printf '%f\n'
+$ video_file: find . -maxdepth 1 -type f -exec printf '%q\n' {} \;
 
 % ffmpeg, video, transcode, compress
 @ ffmpeg
@@ -10,10 +10,10 @@ $ video_file: find . -maxdepth 1 -type f -printf '%f\n'
 ; https://unix.stackexchange.com/a/38380
 
 # reencode video with h265, to a constant rate factor
-ffmpeg -i '<video_file>' -vcodec libx265 -crf <265_crf> -preset <265_compression_preset> '<video_file>-h265_<265_crf>.mp4'
+ffmpeg -i <video_file> -vcodec libx265 -crf <265_crf> -preset <265_compression_preset> <video_file>-h265_<265_crf>.mp4
 
 # reencode video with h265, to given bitrate
-ffmpeg -i '<video_file>' -vcodec libx265 -b <new_bitrate> '<video_file>-h265_<newbitrate>.mp4'
+ffmpeg -i <video_file> -vcodec libx265 -b <new_bitrate> '<video_file>-h265_<newbitrate>.mp4'
 
 $ 265_crf: echo {1..51} | tr ' ' '\n' --- --header "lower: better quality / default: 28"
 $ 265_compression_preset: echo 'ultrafast superfast veryfast faster fast medium slow slower veryslow' | tr ' ' '\n' --- --header "encoding speed / default: medium"
@@ -24,9 +24,9 @@ $ 265_compression_preset: echo 'ultrafast superfast veryfast faster fast medium 
 @ ffmpeg
 
 # trim video file, start point to end point
-ffmpeg -i '<video_file>' -ss <start> -to <end> -c copy -map 0 'trim-<start>-<end>-<video_file>'
+ffmpeg -i <video_file> -ss <start> -to <end> -c copy -map 0 trim-<start>-<end>-<video_file>
 
 # trim video file, start point plus duration
-ffmpeg -i '<video_file>' -ss <start> -t <duration> -c copy -map 0 'trim-<start>+<duration>-<video_file>'
+ffmpeg -i <video_file> -ss <start> -t <duration> -c copy -map 0 trim-<start>+<duration>-<video_file>
 
 ; $ length: ffmpeg -i inputfile 2>&1 | grep Duration | cut -d ' ' -f 4 | sed s/,//

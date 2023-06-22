@@ -18,7 +18,7 @@ tar -I 'zstd -T0' -cf <path_to_create>.tar.zst <path_to_create>
 # create compressed (zstd) tarball, multithreaded, select compression level
 tar -I 'zstd -T0 -<zstd_level>' -cf <path_to_create>.tar.zst <path_to_create>
 
-$ path_to_create: find . ! -name . -prune -type d -printf '%P\n'
+$ path_to_create: find . ! -name . -prune -type d -exec printf '%q\n' {} \;
 ; list all directories, hidden and non-hidden (https://unix.stackexchange.com/a/1647)
 
 $ zstd_level: echo -e "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20 --ultra\n21 --ultra\n22 --ultra"
@@ -54,8 +54,8 @@ tar -I unzstd -xvf <tarball_zst>
 ; might not work with every format
 tar -tvf <tarball_anycomp> | awk '{i+=$3} END{print i}' | numfmt --to=si
 
-$ tarball_gz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.gz' -or -name '*.tgz'
-$ tarball_xz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.xz'
-$ tarball_zst: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.zst'
-$ tarball_anycomp: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.*'
-$ tarball: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar'
+$ tarball_gz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.gz' -or -name '*.tgz' -exec printf '%q\n' {} \;
+$ tarball_xz: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.xz' -exec printf '%q\n' {} \;
+$ tarball_zst: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.zst' -exec printf '%q\n' {} \;
+$ tarball_anycomp: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar.*' -exec printf '%q\n' {} \;
+$ tarball: find . -maxdepth 1 -mindepth 1 -type f -name '*.tar' -exec printf '%q\n' {} \;

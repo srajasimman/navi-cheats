@@ -19,4 +19,4 @@ $ users: getent passwd | cut -d: -f1
 $ groups: getent group | cut -d: -f1
 $ groups_of_user: groups
 
-$ file: find . -maxdepth 1 -type f -printf '%f\n'
+$ file: find . -maxdepth 1 -type f -exec printf '%q\n' {} \;

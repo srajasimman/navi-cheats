@@ -162,8 +162,8 @@ $ not_installed_package: comm -13 \
   <(pacman -Qq | sort) \
   <(pacman -Slq | sort) \
   --- --preview "pacman -Si {}" --multi --expand
-$ file: find . -maxdepth 1 -mindepth 1 -type f -printf '%P\n'
-$ cached_package: find /var/cache/pacman/pkg/ -name *.pkg.tar.zst -type f -printf '%P\n'
+$ file: find . -maxdepth 1 -mindepth 1 -type f -exec printf '%q\n' {} \;
+$ cached_package: find /var/cache/pacman/pkg/ -name *.pkg.tar.zst -type f -exec printf '%q\n' {} \;
 ; -name *.tar.zst -execdir echo {} ";" | sed 's!.*/!!'
 ; ↑ cleaner output but not what the downgrade command needs
 $ installed_command: compgen -c --- --multi --expand

@@ -9,6 +9,6 @@ echo "add to mimeapps.list: $(xdg-mime query filetype <file>)=<application>"
 # list files in cwd of mimetype (following symlinks)
 file --mime-type --dereference -L ./* | awk -F ':' '$2 ~ "<type>" { print $1 }'
 
-$ file: find . -maxdepth 1 -type f -printf '%P\n'
+$ file: find . -maxdepth 1 -type f -exec printf '%q\n' {} \;
 $ application: find /usr/share/applications/ -name '*.desktop' -printf '%P\n'
 $ type: echo 'text/* image/* audio/* video/* font/* application/* application/pdf' | tr ' ' '\n'

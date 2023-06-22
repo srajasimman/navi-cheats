@@ -3,7 +3,7 @@
 
 $ branch: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --all
 $ path: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree <branch> --name-only
-$ file: find . -maxdepth 1 -type f -printf '%P\n'
+$ file: find . -maxdepth 1 -type f -exec printf '%q\n' {} \;
 $ tracked_file: git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-files
 
 ; # checkout file from other branch
