@@ -1,0 +1,16 @@
+% systemd, service, daemon
+
+# browse system units
+systemctl list-units | fzf --header-lines=1
+
+# browse user units
+systemctl --user list-units | fzf --header-lines=1
+
+; # restart system unit
+; systemctl stop <system_unit_active>
+
+$ system_unit: systemctl list-units --- --column 2 --header-lines 1
+$ user_unit: systemctl --user list-units --- --column 1 --header-lines 1
+
+$ system_unit_active: systemctl list-units | awk 'NR==1 {print $0}; ($3 == "active")' --- column 1 --header-lines 1
+$ user_unit_active: systemctl --user list-units | awk 'NR==1 {print $0}; ($3 == "active")' --- column 1 --header-lines 1
