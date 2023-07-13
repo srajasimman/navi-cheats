@@ -7,10 +7,11 @@ pdftk <pdf_input> cat <start_page>-<end_page> output <pdf_output>.pdf
 pdftk <pdf_input> cat $((<offset>+<start_page>))-$((<offset>+<end_page>)) output <pdf_output>.pdf
 
 # merge pdfs
-pdftk <pdf_input> cat <start_page>-<end_page> output <pdf_output>.pdf
+pdftk <pdf_inputs> cat output <pdf_output>.pdf
 
 # split pdf pages into files
 pdftk <pdf_input> burst output <pdf_input>-p%d.pdf
 
 $ pdf_input: find . -maxdepth 1 -name '*.pdf' -type f -exec printf '%q\n' {} \;
+$ pdf_inputs: find . -maxdepth 1 -name '*.pdf' -type f -exec printf '%q\n' {} \; --- --multi
 $ pdf_pages: exiftool <pdf_input> | grep 'Page Count' | cut -d':' -f 2
