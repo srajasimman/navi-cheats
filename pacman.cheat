@@ -8,8 +8,8 @@ sudo pacman -Syu
 # upgrade all packages (force refresh repo databases)
 sudo pacman -Syyu
 
-# check for package updates
-checkupdates
+# check for package updates, with formatting and number
+checkupdates | tee >(column -t) | wc -l
 
 # search for a package
 pacman -Ss <search_string>
