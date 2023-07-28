@@ -92,8 +92,12 @@ sudo pacman -D --asexplicit <installed_package_dependency>
 # mark package as dependency
 sudo pacman -D --asdeps <installed_package_explicit>
 
-# downgrade package
+# downgrade package (from local cache)
 sudo pacman -U /var/cache/pacman/pkg/<cached_package>
+
+# downgrade package (from online archive)
+sudo pacman -U https://archive.archlinux.org/packages/.all/<installed_package>-<version>.pkg.tar.zst
+; output not 100% right - why is there a space after?
 
 # which package could provide a file
 pacman -F <command>
