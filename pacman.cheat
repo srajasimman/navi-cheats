@@ -51,13 +51,7 @@ sudo pacman -Rns <installed_package_explicit>
 pacman -Qo <file>
 
 # which package provides a command
-pacman -Qqo <installed_command> | pacman -Qi -
-
-# which package provides a file in $PATH (by dir)
-pacman -Qo <file_in_path>
-
-# which package provides an executable in $PATH
-pacman -Qo <all_in_path>
+pacman -Qqo <all_in_path> | pacman -Qi
 
 # which package provides a file
 pacman -Qo <file>
