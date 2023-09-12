@@ -1,4 +1,4 @@
 % fd, find, list, search
 
 # list files under cwd, recursively, by modification time (fd)
-fd -t f -x ls -g --time-style='+%y%m%d-%H:%M' | cut -d' ' -f5- | sort -r
+fd -t f -x ls -l --time-style=long-iso | cut -d' ' -f6- | sort -r
