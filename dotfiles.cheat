@@ -19,4 +19,4 @@ git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-files --error-unmatch <file>
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log -p -- <tracked_file>
 
 # pull config
-config pull || config stash && config pull && config stash pop
+config pull || { config stash && config pull && config stash pop; }
