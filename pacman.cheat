@@ -111,6 +111,9 @@ LC_ALL=C pacman -Qmi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}
 # browse packages in a group
 pacman -Sgq <package_group> | fzf --preview='pacman -Si {}'
 
+# list missing packages in group
+comm -23 <(pacman -Sg <package_group> | awk '{print $2}' | sort) <(pacman -Qq | sort)
+
 # which dependencies are/are not already installed
 pacman -Si <not_installed_package> | sed -n 's/Depends On.*://p' | tr -s ' ' "\n" | pacman -Q -
 
