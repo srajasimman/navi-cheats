@@ -3,6 +3,9 @@
 # get os install date (not 100% reliable)
 stat / | grep Birth
 
+# get system reboot / uptimes
+last reboot
+
 # get time in other time zone
 env TZ=<timezone> date
 
