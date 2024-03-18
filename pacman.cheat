@@ -14,6 +14,9 @@ checkupdates | tee >(column -t) | wc -l
 # check for package updates, with formatting and description
 checkupdates | while read -r line; do echo -n "$line"; cut -d' ' -f1 <<< $(sed -e 's/\x1b\[[0-9;]*m//g' <<< $line) | pacman -Qi - | sed -n '/Description     :/s/Description     ://p'; done | column -t -m -c 0 -H - -o ' ' -l 5 -C 'name=PKG' -C 'name=CUR' -C 'hide' -C 'name=NEW' -C 'name=DESC,wrap' | less -S
 
+# browse package updates in fzf, with info
+checkupdates | column -t | fzf --preview='pacman --color=always -Qi {1} | tail -n +3' --reverse --preview-window='down,30%' --bind 'enter:change-preview-window(right,50%|down,30%)'
+
 # search for a package
 pacman -Ss <search_string>
 
