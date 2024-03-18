@@ -11,6 +11,9 @@ sudo pacman -Syyu
 # check for package updates, with formatting and number
 checkupdates | tee >(column -t) | wc -l
 
+# check for package updates, with formatting and description
+checkupdates | while read -r line; do echo -n "$line"; cut -d' ' -f1 <<< $(sed -e 's/\x1b\[[0-9;]*m//g' <<< $line) | pacman -Qi - | sed -n '/Description     :/s/Description     ://p'; done | column -t -m -c 0 -o ' ' -l 5 -C 'name=PKG' -C 'name=CUR,right' -C 'name=->,right' -C 'name=NEW' -C 'name=DESC,wrap' | less -S
+
 # search for a package
 pacman -Ss <search_string>
 
