@@ -17,6 +17,9 @@ checkupdates | while read -r line; do echo -n "$line"; cut -d' ' -f1 <<< $(sed -
 # browse package updates in fzf, with info
 checkupdates | column -t | fzf --preview='pacman --color=always -Qi {1} | tail -n +3' --reverse --preview-window='down,30%' --bind 'enter:change-preview-window(right,50%|down,30%)'
 
+# check AUR updates, with formatting and number
+pacman -Qm | aur vercmp | tee >(column -t) | wc -l
+
 # search for a package
 pacman -Ss <search_string>
 
