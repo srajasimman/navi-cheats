@@ -15,7 +15,7 @@ checkupdates | tee >(column -t) | wc -l
 checkupdates | while read -r line; do echo -n "$line"; cut -d' ' -f1 <<< $(sed -e 's/\x1b\[[0-9;]*m//g' <<< $line) | pacman -Qi - | sed -n '/Description     :/s/Description     ://p'; done | column -t -m -c 0 -H - -o ' ' -l 5 -C 'name=PKG' -C 'name=CUR' -C 'hide' -C 'name=NEW' -C 'name=DESC,wrap' | less -S
 
 # browse package updates in fzf, with info
-checkupdates | column -t | fzf --preview='pacman --color=always -Qi {1} | tail -n +3' --reverse --preview-window='right,50%' --bind 'enter:change-preview-window(down,30%|right,50%)'
+checkupdates | column -t | fzf -n1 --with-nth=1,2,4 --preview='pacman --color=always -Qi {1} | tail -n +3' --reverse --preview-window='right,50%' --bind 'enter:change-preview-window(down,30%|right,50%)'
 
 # check AUR updates, with formatting and number
 pacman -Qm | aur vercmp | tee >(column -t) | wc -l
