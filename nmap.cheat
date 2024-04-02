@@ -1,0 +1,4 @@
+% nmap, network
+
+# scan local network (use sudo for more information)
+nmap -sn 192.168.0.0/24
