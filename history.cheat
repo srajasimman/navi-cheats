@@ -1,0 +1,4 @@
+% history
+
+# clear bash history and exit
+rm ~/.bash_history && touch ~/.bash_history && history -c && exit
